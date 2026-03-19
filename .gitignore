@@ -1,0 +1,23 @@
+# AI Models
+*.pt
+
+# Configuration files
+*.yaml
+*.ini
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Logs
+log/
+*.log
+
+# Video Outputs
+output/
+*.avi
+*.mp4
