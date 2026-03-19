@@ -214,7 +214,7 @@ class CameraWorker(QObject):
         self.stopCam_ = self.main_ui.stopCam
 
         try:
-            api_updatestatus = f'http://10.212.10.234:81/api/UpdateStatus?CamName={self.cam}&Status=1'
+            api_updatestatus = f''
             try:
                 requests.post(api_updatestatus, timeout= 5)
             except requests.exceptions.RequestException as e:
@@ -239,7 +239,7 @@ class CameraWorker(QObject):
                     Reconnect += 1
                     if Reconnect == 1:
                         self.Cam.setIcon(self.iconStop)
-                        api_updatestatus = f'http://10.212.10.234:81/api/UpdateStatus?CamName={self.cam}&Status=0'
+                        api_updatestatus = f''
                         try:
                             requests.post(api_updatestatus, timeout= 5)
                         except requests.exceptions.RequestException as e:
@@ -255,7 +255,7 @@ class CameraWorker(QObject):
                 else:
                     Reconnect = 0
                     if not status_posted:
-                        api_updatestatus = f'http://10.212.10.234:81/api/UpdateStatus?CamName={self.cam}&Status=1'
+                        api_updatestatus = f''
                         try:
                             requests.post(api_updatestatus, timeout= 5)
                         except requests.exceptions.RequestException as e:
@@ -450,7 +450,7 @@ class Ui_MainWindow(object):
         self.stopCam = None
 
     def setupUi(self, MainWindow):
-        response = requests.get('http://10.212.10.234:81/api/GetCamSetting', timeout=5)
+        response = requests.get('', timeout=5)
         self.camSettting = response.json()
 
         MainWindow.setObjectName("MainWindow")
@@ -752,10 +752,6 @@ class Ui_MainWindow(object):
             elif self.F1_COP1_04.text() == cam["camName"]:
                 self.start_cam3(camip='PKID=' + str(cam["pkid"]), rtsp=cam["rtsp"])
 
-        # self.start_cam1(camip='PKID=1', rtsp='//192.168.10.200/FA_Vision/2.SEI_AI_Camera/1.CCTVVideos/Video_20241004/Video_20241004150212/F1-COPPER 1_F1-COP1-05_20241004062959_20241004065959.mp4')
-        # self.start_cam2(camip='PKID=1', rtsp = 'D:/PROJECT/Project_CCTV/7.CCTV-AI/03-Development/Tool/CutVideo/outputcut/20240822164635_20240822165738_164651_23.mp4')
-        # self.start_cam3(camip='PKID=1', rtsp = 'D:/PROJECT/Project_CCTV/7.CCTV-AI/03-Development/FormCam/F1-COP1-04_20241004102800_150.mp4')
-
         # Kết nối sự kiện khi nhấp chuột vào treeView
         self.treeView.doubleClicked.connect(self.camSelect)
 
@@ -922,7 +918,8 @@ class Ui_MainWindow(object):
     # def retry_get_data(timeout=100, retry_delay= 5):
     #     while True:
     #         try:
-    #             response = requests.get('http://10.212.10.234:81/api/GetTopCamSetting', timeout=timeout)
+    #             response = requests.get('
+    ', timeout=timeout)
     #             data = response.json()
     #             print("Dữ liệu nhận được:", data)
     #             return data  # Thoát khỏi vòng lặp khi có dữ liệu
@@ -936,7 +933,8 @@ class Ui_MainWindow(object):
 
     def update_camera_settings(self):
         try:
-            response = requests.get('http://10.212.10.234:81/api/GetTopCamSetting', timeout=100)
+            response = requests.get('
+            ', timeout=100)
             data = response.json()
         except:
             logging.exception('Quá thời timeout {timeout} giây')
