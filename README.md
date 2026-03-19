@@ -96,13 +96,3 @@ pip install PyQt6 opencv-python ultralytics pymodbus requests pyyaml shapely pyt
    ```
 3. On the interface, select a camera from the tree list on the left to start monitoring.
 4. Click **Connect PLC** to enable physical alarm features.
-
----
-
-## 📝 Version History
-
-- **v1.1.0 (2025-01-14):**
-  - Upgraded glove detection and panel touch behavior models.
-  - Optimized multi-threading performance.
-- **v1.0.0:**
-  - Initial basic monitoring system and PLC integration.
